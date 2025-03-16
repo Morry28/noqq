@@ -5,7 +5,6 @@ const { parse } = await import("fast-csv");
 if (!parentPort) throw new Error("This script must be run as a worker.");
 
 const { filePath, fnString } = workerData;
-console.log("🔹 stringed fn from gpt:", fnString);
 
 const extractFunction = (str) => {
     const match = str.match(/function\s+turingFunction\(\)\s*{([\s\S]*?)\n}/);
@@ -14,7 +13,6 @@ const extractFunction = (str) => {
 };
 
 const cleanFnString = extractFunction(fnString);
-console.log("clean function:", cleanFnString);
 
 let extractedFunction;
 try {
