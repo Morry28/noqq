@@ -1,4 +1,4 @@
-# NOQQ (No Query Query) v0.1.12 - UNSTABLE VERSION 
+# NOQQ (No Query Query) v0.1.132 - UNSTABLE VERSION 
 Only supports .csv for now.
 
 **Intelligent queries at fractions of a penny instead of dollars.**
