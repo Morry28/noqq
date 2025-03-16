@@ -1,0 +1,37 @@
+{
+  "name": "noqq",
+  "version": "0.0.1",
+  "description": "No query query data chat for fraction of normal cost",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo no way bro",
+    "build": "tsc && rsync -av --delete dist/ ../noqq/dist/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Morry28/noqq.git"
+  },
+  "keywords": [
+    "Ai",
+    "noquery",
+    "chat",
+    "data",
+    "sql",
+    "affordable"
+  ],
+  "author": "Roman Janek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Morry28/noqq/issues"
+  },
+  "homepage": "https://github.com/Morry28/noqq#readme",
+  "dependencies": {
+    "fast-csv": "^5.0.2",
+    "fs": "^0.0.1-security",
+    "openai": "^4.87.3",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10"
+  }
+}
