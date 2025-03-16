@@ -4,15 +4,14 @@ import fs from "fs";
 const { parse } = await import("fast-csv");
 
 if (!parentPort) {
-    console.error("This script must be run as a worker.");
-    process.exit(1);
+    throw new Error("This script must be run as a worker.");
+
 }
 
 const { filePath, fnString } = workerData;
 let cleanFnString = fnString
     .replace(/^.*?function\s+turingFunction\(\)\s*{([\s\S]*?)}\s*turingFunction;\s*}.*$/s, 'function turingFunction() {$1}') //lol
     .trim();
-console.log('clean function: ', cleanFnString)
 const turingFunction = eval(`(${cleanFnString})`);
 const response = turingFunction();
 

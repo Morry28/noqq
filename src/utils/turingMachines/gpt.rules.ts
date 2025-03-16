@@ -25,8 +25,7 @@ class GPTRules {
     const apiKey = openaiApiKey;
     const openai = new OpenAI({ apiKey });
     if (!openai) {
-      console.error("❌ OpenAI client is not initialized!");
-      return null;
+      throw Error('OpenAI client is not initialized!');
     }
     try {
       let mainPrompt=""
@@ -75,8 +74,7 @@ class GPTRules {
     const apiKey = openaiApiKey;
     const openai = new OpenAI({ apiKey });
     if (!openai) {
-      console.error("❌ OpenAI client is not initialized!");
-      return false;
+      throw Error('OpenAI client is not initialized!');
     }
 
     const validationPrompt = validatePrompt(func, prompt, sample)
@@ -102,8 +100,7 @@ class GPTRules {
     const apiKey = openaiApiKey;
     const openai = new OpenAI({ apiKey });
     if (!openai) {
-      console.error("❌ OpenAI client is not initialized!");
-      return "false";
+      throw Error('OpenAI client is not initialized!');
     }
     const decomposedPrompt = decomposePrompt(prompt, sample)
 
@@ -116,8 +113,7 @@ class GPTRules {
 
       return response.choices[0]?.message?.content || "sorry no data"
     } catch (e) {
-      console.error(e);
-      return "false";
+      throw Error(e as string);
     }
   }
 

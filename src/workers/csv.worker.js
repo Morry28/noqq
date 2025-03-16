@@ -5,8 +5,8 @@ import fs from "fs";
 const { parse } = await import("fast-csv");
 
 if (!parentPort) {
-    console.error("This script must be run as a worker.");
-    process.exit(1);
+    throw new Error("This script must be run as a worker.");
+
 }
 
 const { filePath } = workerData;

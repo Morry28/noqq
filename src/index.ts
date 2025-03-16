@@ -27,12 +27,12 @@ export default class NOQQ {
     }
 
     private async createResponse(userQueryText: string): Promise<unknown> {
-
+       
         const turingManager = new TuringMachineManager()
         const turingRes = await turingManager.newWork(userQueryText, this.sample, this.filePath, this.openaiApiKey)
+        const respose = turingRes?? 'Ups, something went wrong'
 
-
-        return turingRes
+        return respose
     }
 }
 
@@ -74,7 +74,6 @@ class FileManager {
 
     private getFileType(filePath: string): string {
         if (typeof filePath === "string") {
-            console.log('getFiletype : ', typeof filePath, filePath)
             return filePath.split(".").pop()?.toLowerCase() || "";
         } else {
             throw Error(`Error:File path is expected string, received ${typeof filePath}. NOQQ package can be used only in node.js enviroment (backend)`)
@@ -146,7 +145,6 @@ class CSVStreamer {
     }
 
     async run(): Promise<any> {
-        console.log('We got into run() end of flow')
 
         if (typeof this.filePath !== "string") throw new Error("Expected file path in Node.js");
 

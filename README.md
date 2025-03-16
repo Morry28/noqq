@@ -5,6 +5,23 @@ Only supports .csv for now.
 
 NOQQ is a lightweight, intelligent data querying system designed to handle massive CSV datasets quickly and affordably. It leverages the power of OpenAI to dynamically create efficient, precise data filters and retrieval functions directly from natural language prompts.
 
+## Cost Comparison
+
+Imagine you have a database file with **12 columns and 100,000 entities**, requiring the processing of approximately **2.5 million input tokens** per request.  
+
+This is the actual cost comparison as of **March 2025**:
+
+| Model        | Cost (USD) |
+|--------------|------------|
+| GPT-4.5      | $190       |
+| GPT-4o       | $6.25      |
+| GPT-4o-mini  | $0.37      |
+| GPT-o1       | $37        |
+| GPT-o1-mini  | $2.75      |
+| **NOQQ**     | **$0.001** |
+
+NOQQ provides an ultra-low-cost alternative to traditional LLM-powered queries, making large-scale data processing significantly more affordable.
+
 ## Installation
 
 Install via npm:
@@ -21,7 +38,7 @@ Initialize NOQQ and query your CSV file effortlessly:
 import NOQQ from 'noqq';
 
 const noqq = new NOQQ({
-    openAIKey: 'YOUR_OPENAI_API_KEY',
+    openaiApiKey: 'YOUR_OPENAI_API_KEY',
 });
 
 await noqq.initFile('./customerDB.csv');

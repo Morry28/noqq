@@ -52,7 +52,6 @@ class TuringMachine {
    */
   private async initializeFunction(): Promise<void> {
     this.functionCore = await GPTRules.generate(this.prompt, this.sample, this.model, this.decomposedPrompt || this.decomposeUserPrompt(), this.openaiApiKey);
-    console.log("decomposedPrompt : ",this.decomposedPrompt)
 
     if (this.functionCore) {
       this.functionCore = this.functionCore.replace(/```javascript|```/g, "").trim();
@@ -83,16 +82,15 @@ class TuringMachine {
         await this.initializeFunction();
 
         const validated = await this.validate(workload.toString()) // Passujeme stringovanu funkciu na validaciu
-        console.log(workload.toString())
-        console.log("Validation result: " + validated)
         if (validated === false) continue
 
-        this.turingFunction = workload  
+        this.turingFunction = workload
+        return
 
       }
     } catch (err) {
-      console.error("Error creating functionCore:", err);
-      return null;
+      throw Error("Error creating functionCore:" + err);
+
     }
     return null;
   }
