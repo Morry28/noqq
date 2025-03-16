@@ -1,6 +1,5 @@
-# noqq
-No query query data chat for fraction of normal cost
-# NOQQ (No Query Query) v0.1
+# NOQQ (No Query Query) v0.1.12 - UNSTABLE VERSION 
+Only supports .csv for now
 
 **Intelligent queries at fractions of a penny instead of dollars.**
 
