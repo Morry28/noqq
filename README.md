@@ -1,5 +1,10 @@
-# NOQQ (No Query Query) v0.1.132 - UNSTABLE VERSION 
-Only supports .csv for now.
+# NOQQ (No Query Query) v0.1.14 - UNSTABLE VERSION 
+Only supports single .csv for now.
+70% Success rate (To ensure highest accuracy, always write clear queries, use exact column names, and keep your data format consistent)
+
+![npm](https://img.shields.io/npm/v/noqq)
+![coverage](https://img.shields.io/codecov/c/github/Morry28/noqq)
+![last commit](https://img.shields.io/github/last-commit/Morry28/noqq)
 
 **Intelligent queries at fractions of a penny instead of dollars.**
 
@@ -18,7 +23,7 @@ This is the actual cost comparison as of **March 2025**:
 | GPT-4o-mini  | $0.37      |
 | GPT-o1       | $37        |
 | GPT-o1-mini  | $2.75      |
-| **NOQQ**     | **$0.001** |
+| **NOQQ**     | **$0.002** |
 
 NOQQ provides an ultra-low-cost alternative to traditional LLM-powered queries, making large-scale data processing significantly more affordable.
 

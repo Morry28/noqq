@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo no way bro",
-    "build": "tsc && rsync -av --delete dist/ ../noqq/dist/"
+    "build-dev": "tsc && rsync -av --delete dist/ ../noqq-next/dist/",
+    "build-prod": "tsc && rsync -av --delete dist/ ../noqq/dist/"
+
   },
   "repository": {
     "type": "git",

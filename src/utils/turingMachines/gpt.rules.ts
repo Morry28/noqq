@@ -1,4 +1,4 @@
-import { arrayPrompt, arrayPromptFintech, decomposePrompt, streamingPrompt, validatePrompt } from "../prompts/prompts.js";
+import { arrayPrompt, arrayPromptFintech, decomposePrompt, decomposePromptMultiple, streamingPrompt, validatePrompt } from "../prompts/prompts.js";
 const { default: OpenAI } = await import("openai");
 
 /**
@@ -93,7 +93,7 @@ class GPTRules {
     }
   }
 
-  static async decomposePrompt(
+  static async decomposePromptSingle(
     prompt: string,
     sample: any,
     openaiApiKey:string): Promise<string> {
@@ -103,6 +103,30 @@ class GPTRules {
       throw Error('OpenAI client is not initialized!');
     }
     const decomposedPrompt = decomposePrompt(prompt, sample)
+
+    try {
+      const response = await openai.chat.completions.create({
+        model: "gpt-3.5-turbo",
+        messages: [{ role: "system", content: decomposedPrompt }],
+        max_tokens: 500,
+      });
+
+      return response.choices[0]?.message?.content || "sorry no data"
+    } catch (e) {
+      throw Error(e as string);
+    }
+  }
+
+  static async decomposePromptMultiple(
+    prompt: string,
+    filemap: { fileName: string, fileType: string, filePath: string, sample?: any }[],
+    openaiApiKey:string): Promise<string> {
+    const apiKey = openaiApiKey;
+    const openai = new OpenAI({ apiKey });
+    if (!openai) {
+      throw Error('OpenAI client is not initialized!');
+    }
+    const decomposedPrompt = decomposePromptMultiple(prompt, filemap)
 
     try {
       const response = await openai.chat.completions.create({
