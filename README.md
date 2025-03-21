@@ -1,4 +1,4 @@
-# NOQQ (No Query Query) v0.1.14 - UNSTABLE VERSION 
+# NOQQ (No Query Query) v0.1.141 - UNSTABLE VERSION 
 ![npm](https://img.shields.io/npm/v/noqq)
 ![last commit](https://img.shields.io/github/last-commit/Morry28/noqq)
 
