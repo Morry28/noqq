@@ -16,29 +16,32 @@ class TuringMachine {
    * @property {string | null} decomposedPrompt - 
    * @property {string} model - Ai data model
    */
-  prompt: string;
+  
   type: TSuppoertedTypes;
-  sample: TSuppoertedFiles;
-  input: unknown;
-  private functionCore: string | null = null;
-  turingFunction:Function | undefined  
-  decomposedPrompt:string|null = null;
   model:string
+  input: unknown;
+  prompt: string;
+  sample: TSuppoertedFiles;
   openaiApiKey:string
+  turingFunction:Function | undefined  
+  decomposedPrompt:string;
+  private functionCore: string | null = null;
 
   /**
    * @param {string} prompt - Užívateľský prompt.
-   * @param {TSuppoertedFiles} sample - Vzor súboru.
+   * @param {any} sample - Vzor súboru.
    * @param {TSuppoertedTypes} type - Typ spracovania.
    * @param {string} model - Ai data model
    */
   constructor(
     prompt: string,
-    sample: TSuppoertedFiles,
+    decomposedPrompt:string,
+    sample: any,
     type: TSuppoertedTypes,
     model:string,
     openaiApiKey:string) {
     this.prompt = prompt;
+    this.decomposedPrompt = decomposedPrompt
     this.sample = sample;
     this.type = type;
     this.model = model;
@@ -51,17 +54,12 @@ class TuringMachine {
    * @return {Promise<void>}
    */
   private async initializeFunction(): Promise<void> {
-    this.functionCore = await GPTRules.generate(this.prompt, this.sample, this.model, this.decomposedPrompt || this.decomposeUserPrompt(), this.openaiApiKey);
+    this.functionCore = await GPTRules.generate(this.prompt, this.sample, this.model, this.decomposedPrompt, this.openaiApiKey);
 
     if (this.functionCore) {
       this.functionCore = this.functionCore.replace(/```javascript|```/g, "").trim();
     }
 
-  }
-
-  private async decomposeUserPrompt():Promise<string>{
-    this.decomposedPrompt = await GPTRules.decomposePrompt(this.prompt,this.sample, this.openaiApiKey)
-    return this.decomposedPrompt
   }
 
   async createNewFunction(){
